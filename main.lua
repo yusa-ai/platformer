@@ -115,9 +115,6 @@ function loadMap(number)
     
     destroyAll()
 
-    -- no plan for level 3 and beyond of course, this is just a learning project
-    if number == 3 then number = 1 end
-
     gameMap = sti('maps/level' .. number .. '.lua')
 
     -- Load starting points
@@ -145,7 +142,12 @@ function loadMap(number)
 end
 
 function loadNextMap()
-    saveData.level = saveData.level + 1
+    -- No plan for level 3 and beyond
+    if saveData.level < 2 then
+        saveData.level = saveData.level + 1
+    else
+        saveData.level = 1
+    end
     loadMap(saveData.level)
 end
 
